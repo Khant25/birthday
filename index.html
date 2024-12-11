@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Aung Thiha</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #f9d423, #ff4e50);
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            position: relative;
+        }
+
+        .present {
+            width: 150px;
+            height: 150px;
+            background: #ff6f61;
+            border-radius: 10px;
+            position: relative;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            animation: bounce 1.5s infinite;
+        }
+
+        .present:before, .present:after {
+            content: "";
+            position: absolute;
+            background: #fff;
+        }
+
+        .present:before {
+            width: 20px;
+            height: 150px;
+            left: 65px;
+            top: 0;
+        }
+
+        .present:after {
+            width: 150px;
+            height: 20px;
+            top: 65px;
+            left: 0;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .message {
+            display: none;
+            font-size: 2rem;
+            color: #fff;
+            margin-top: 20px;
+            animation: fadeIn 1s ease-in-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #fff;
+            animation: confetti 3s linear infinite;
+        }
+
+        @keyframes confetti {
+            0% {
+                transform: translateY(0) rotate(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(500px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="present" onclick="openPresent()"></div>
+        <div class="message" id="message">HAPPY 19TH BIRTHDAY AUNG THIHA</div>
+    </div>
+
+    <script>
+        function openPresent() {
+            const present = document.querySelector('.present');
+            const message = document.getElementById('message');
+            present.style.animation = 'none';
+            present.style.transform = 'scale(0)';
+            message.style.display = 'block';
+            generateConfetti();
+        }
+
+        function generateConfetti() {
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                confetti.style.left = `${Math.random() * 100}%`;
+                confetti.style.background = `hsl(${Math.random() * 360}, 100%, 70%)`;
+                confetti.style.animationDuration = `${Math.random() * 3 + 2}s`;
+                document.body.appendChild(confetti);
+                setTimeout(() => confetti.remove(), 5000);
+            }
+        }
+    </script>
+</body>
+</html>
